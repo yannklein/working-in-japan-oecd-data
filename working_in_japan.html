@@ -13122,38 +13122,9 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pandasdmx</span> <span class="k">as</span> <span class="nn">pdsdmx</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">import</span> <span class="nn">re</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get the last job post on Indeed Japan</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://jp.indeed.com/jobs?q=</span><span class="si">%E</span><span class="s2">6%AD%A3</span><span class="si">%E</span><span class="s2">7%A4%BE</span><span class="si">%E</span><span class="s2">5</span><span class="si">%93%</span><span class="s2">A1&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -13164,49 +13135,6 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-<span class="n">post</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;jobsearch-SerpJobCard&quot;</span><span class="p">})</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;((\S+\s?)+)&quot;</span>
-
-<span class="c1"># Post title</span>
-<span class="n">post_title_raw</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;jobtitle&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">post_title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">post_title_raw</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Job title: </span><span class="si">{post_title}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Post company</span>
-<span class="n">post_company_raw</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;company&quot;</span><span class="p">})</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">post_company_raw</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)):</span>
-    <span class="n">post_company_raw</span> <span class="o">=</span> <span class="n">post_company_raw</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">post_company_raw</span><span class="p">):</span>
-    <span class="n">post_company</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">post_company_raw</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">post_company</span> <span class="o">=</span> <span class="s1">&#39;No data&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Company: </span><span class="si">{post_company}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Post salary</span>
-<span class="n">post_salary_raw</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;salary&quot;</span><span class="p">})</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">post_salary_raw</span><span class="p">):</span>
-    <span class="n">post_salary</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">post_salary_raw</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">post_salary</span> <span class="o">=</span> <span class="s1">&#39;No data&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Salary: </span><span class="si">{post_salary}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Post location</span>
-<span class="n">post_loc_raw</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;location&quot;</span><span class="p">})</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">post_loc_raw</span><span class="p">):</span>
-    <span class="n">post_loc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">post_loc_raw</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">post_loc</span> <span class="o">=</span> <span class="s1">&#39;No data&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Location: </span><span class="si">{post_loc}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13218,10 +13146,10 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Job title: 高級外資系ホテル送迎ドライバー
-Company: 株式会社NEW　ERA　TOKYO
-Salary: 月給 50万円
-Location: 港区
+<pre>Job title: 2t・3tルートドライバー　
+Company: 寿ロジコム株式会社
+Salary: 月給 21.5万円
+Location: 豊島区
 </pre>
 </div>
 </div>
@@ -13239,95 +13167,6 @@ Location: 港区
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">oecd</span> <span class="o">=</span> <span class="n">pdsdmx</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;OECD&#39;</span><span class="p">)</span>
-<span class="c1"># data_response = oecd.data(resource_id=&#39;MEI_CLI&#39;, key=&#39;all?startTime=2018&#39;)</span>
-<span class="n">data_response</span> <span class="o">=</span> <span class="n">oecd</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">resource_id</span><span class="o">=</span><span class="s1">&#39;ANHRS&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;all?startTime=2000&#39;</span><span class="p">)</span>
-<span class="n">avg_annual_hr_work_df</span> <span class="o">=</span> <span class="n">data_response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data_response</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">series</span><span class="p">,</span> <span class="n">parse_time</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">avg_annual_hr_work_df</span> <span class="o">=</span> <span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s1">&#39;TE&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">avg_annual_hr_work_df</span> <span class="o">=</span> <span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">headers_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">headers</span> <span class="ow">in</span> <span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;index&#39;</span><span class="p">):</span>
-        <span class="n">headers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">headers_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">headers_list</span><span class="p">)</span>
-<span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">avg_annual_hr_work_subset_df</span> <span class="o">=</span> <span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;OECD&#39;</span><span class="p">])</span>
-<span class="n">year2018</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2018&#39;</span><span class="p">])</span>
-<span class="n">year2018</span> <span class="o">=</span> <span class="n">year2018</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2018&#39;</span><span class="p">])</span>
-<span class="n">year2000</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2000&#39;</span><span class="p">])</span>
-<span class="n">year2000</span> <span class="o">=</span> <span class="n">year2000</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2000&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot of average working hour for JPN and OECD from 2000 to 2018</span>
-<span class="n">avg_annual_hr_work_subset_plot</span> <span class="o">=</span> <span class="n">avg_annual_hr_work_subset_df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">avg_annual_hr_work_subset_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average working hour for JPN and OECD from 2000 to 2018&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">fontdict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
- <span class="s1">&#39;fontweight&#39;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">})</span>
-<span class="n">avg_annual_hr_work_subset_plot</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
-<span class="n">avg_annual_hr_work_subset_plot</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Working hours per year&#39;</span><span class="p">)</span>
-
-
-<span class="c1">#Plot of the average working hour per country in 2000</span>
-<span class="n">country_colors</span> <span class="o">=</span> <span class="p">[[]]</span>
-<span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">year2000</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;JPN&quot;</span><span class="p">):</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#BB0000&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="p">(</span><span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;OECD&quot;</span><span class="p">):</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#0000BB&#39;</span><span class="p">)</span>
-    
-<span class="n">year2000_plot</span> <span class="o">=</span> <span class="n">year2000</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">country_colors</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">year2000_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average working hour per country in 2000&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">fontdict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
- <span class="s1">&#39;fontweight&#39;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">})</span>
-<span class="n">year2000_plot</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Working hours&#39;</span><span class="p">)</span>
-
-<span class="c1">#Plot of the average working hour per country in 2018</span>
-<span class="n">country_colors</span> <span class="o">=</span> <span class="p">[[]]</span>
-<span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">year2018</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;JPN&quot;</span><span class="p">):</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#BB0000&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="p">(</span><span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;OECD&quot;</span><span class="p">):</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">country_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#0000BB&#39;</span><span class="p">)</span>
-    
-<span class="n">year2018_plot</span> <span class="o">=</span> <span class="n">year2018</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">country_colors</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">year2018_plot</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average working hour per country in 2000&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">fontdict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
- <span class="s1">&#39;fontweight&#39;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">})</span>
-<span class="n">year2018_plot</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Working hours&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -13335,16 +13174,34 @@ Location: 港区
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/yannklein/anaconda3/lib/python3.7/site-packages/pandasdmx/writer/data2pandas.py:124: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
+of pandas will change to not sort by default.
 
+To accept the future behavior, pass &#39;sort=False&#39;.
 
-<div class="output_text output_subarea output_execute_result">
-<pre>Text(0, 0.5, &#39;Working hours&#39;)</pre>
+To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
+
+  d_frame = PD.concat(list(pd_series), axis=1, copy=False)
+</pre>
+</div>
 </div>
 
 </div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
 
 <div class="output_area">
 
@@ -13404,16 +13261,12 @@ Location: 港区
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
 
-    </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+
 </div>
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     </div>
