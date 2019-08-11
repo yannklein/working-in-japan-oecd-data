@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>working_in_japan.nbconvert</title>
+<title>working_in_japan</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13123,7 +13123,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -13143,7 +13143,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get the last job post on Indeed Japan</span>
@@ -13165,7 +13165,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
@@ -13216,10 +13216,10 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Job title: 経営幹部研修講師 (プレミアム輸入車ディーラー対象)
-Company: 株式会社ストラテジック
-Salary: No data
-Location: 東京都
+<pre>Job title: 正社員営業,営業アシスタント　未経験者、新卒、第二新卒、国内営業語学不問、海外日本語以外一カ国の語学力必須、海外留学帰国...
+Company: D&amp;X株式会社
+Salary: 月給 30.6万円
+Location: 瑞穂町
 </pre>
 </div>
 </div>
@@ -13238,7 +13238,7 @@ Location: 東京都
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">oecd</span> <span class="o">=</span> <span class="n">pdsdmx</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;OECD&#39;</span><span class="p">)</span>
@@ -13251,35 +13251,10 @@ Location: 東京都
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/yannklein/anaconda3/lib/python3.7/site-packages/pandasdmx/writer/data2pandas.py:124: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
-of pandas will change to not sort by default.
-
-To accept the future behavior, pass &#39;sort=False&#39;.
-
-To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
-
-  d_frame = PD.concat(list(pd_series), axis=1, copy=False)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">avg_annual_hr_work_df</span> <span class="o">=</span> <span class="n">avg_annual_hr_work_df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s1">&#39;TE&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13306,7 +13281,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot of average working hour for JPN and OECD from 2000 to 2018</span>
@@ -13358,7 +13333,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
