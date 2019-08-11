@@ -13123,7 +13123,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -13143,7 +13143,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get the last job post on Indeed Japan</span>
@@ -13165,7 +13165,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
@@ -13179,6 +13179,8 @@ div#notebook {
 
 <span class="c1"># Post company</span>
 <span class="n">post_company_raw</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;company&quot;</span><span class="p">})</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">post_company_raw</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)):</span>
+    <span class="n">post_company_raw</span> <span class="o">=</span> <span class="n">post_company_raw</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">post_company_raw</span><span class="p">):</span>
     <span class="n">post_company</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">post_company_raw</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">else</span><span class="p">:</span>
@@ -13216,10 +13218,10 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Job title: 正社員営業,営業アシスタント　未経験者、新卒、第二新卒、国内営業語学不問、海外日本語以外一カ国の語学力必須、海外留学帰国...
-Company: D&amp;X株式会社
-Salary: 月給 30.6万円
-Location: 瑞穂町
+<pre>Job title: 高級外資系ホテル送迎ドライバー
+Company: 株式会社NEW　ERA　TOKYO
+Salary: 月給 50万円
+Location: 港区
 </pre>
 </div>
 </div>
